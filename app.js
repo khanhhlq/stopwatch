@@ -1,29 +1,34 @@
+
+// DOM: Khởi tạo biến, gán tất cả bằng phương
+//      thức querySelector, id của những button 
+//      có bên index.html
 const start_btn = document.querySelector('#start')
 const pause_btn = document.querySelector('#pause')
 const stop_btn = document.querySelector('#stop')
 const start_all_btn = document.querySelector('#startAll')
 const stop_all_btn = document.querySelector('#stopAll')
 
+// DOM: Khởi tạo biến, gán tất cả bằng phương thức
+//      querySelector, id của thẻ span chứa mm:ss:tt
 let minutes = document.querySelector("#minutes")
 let seconds = document.querySelector("#seconds")
 let tens = document.querySelector("#tens")
 
+// Khởi tạo biến, để tạo giá trị ban đầu
 let appendMinutes = 00
 let appendSeconds = 00
 let appendTens = 00
 let Interval
 
-let interval = null
-
+// Lắng nghe sự kiện (click) của button và chạy hàm
 start_btn.addEventListener("click", () => {
     clearInterval(Interval)
-    Interval = setInterval(startTimer, 10)
+    Interval = setInterval(startTimer, 1)
 })
 
 pause_btn.addEventListener("click", () => {
     clearInterval(Interval)
 })
-
 
 stop_btn.addEventListener("click", () => {
     clearInterval(Interval)
@@ -35,14 +40,17 @@ stop_btn.addEventListener("click", () => {
     tens.innerHTML = appendTens
 })
 
+// Hàm xử lí đếm giờ của button Start
 const startTimer = () => {
     appendTens++
+   
 
-    if (appendTens <= 9){
+    // Phần trăm giây
+    if (0 < appendTens && appendTens <= 9){
         tens.innerHTML = "0" + appendTens
     }
 
-    if (appendTens > 9){
+    if (9 < appendTens && appendTens <= 99){
         tens.innerHTML = appendTens
     }
 
@@ -53,26 +61,28 @@ const startTimer = () => {
         seconds.innerHTML = "0" + appendSeconds
     }
 
-    if (appendSeconds <= 9){
+    // Giây
+    if (0 < appendSeconds && appendSeconds <= 9){
         seconds.innerHTML = "0" + appendSeconds
     }
 
-    if (appendSeconds > 9){
+    if (9 < appendSeconds && appendSeconds <= 59){
         seconds.innerHTML = appendSeconds
     }
 
-    if (appendSeconds > 60){
+    if (appendSeconds > 59){
         appendSeconds = 0
         seconds.innerHTML = "0" + appendSeconds
         appendMinutes++
         minutes.innerHTML = "0" + appendMinutes
     }
 
-    if (appendMinutes <= 9){
+    // Phút
+    if (0 < appendMinutes && appendMinutes <= 9){
         minutes.innerHTML = "0" + appendMinutes
     }
 
-    if (appendMinutes > 9){
+    if (9 < appendMinutes && appendMinutes <= 99){
         minutes.innerHTML = appendMinutes
     }
 }
