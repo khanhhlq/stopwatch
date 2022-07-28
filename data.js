@@ -5,6 +5,7 @@ let clock = {
             minutes: 0,
             seconds: 0,
             tens: 0,
+            interval: [],
             appendMinutes: 0,
             appendSeconds: 0,
             appendTens: 0
