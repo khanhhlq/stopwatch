@@ -13,11 +13,17 @@ for (let i of clock.data){
     `
 }
 
+// Khởi tạo biến, để tạo giá trị ban đầu
 let Interval = [],
+
+// DOM: Khởi tạo biến, gán tất cả bằng phương
+//      thức querySelector, id của những button 
+//      có bên index.html
     tens = document.querySelectorAll("#tens"),
     seconds = document.querySelectorAll("#seconds"),
     minutes = document.querySelectorAll("#minutes")
-
+    
+// Lắng nghe sự kiện (click) của button và chạy hàm
 let startBtn = (index) => {
     clearInterval(Interval[index])
     Interval[index] = setInterval(() => {
@@ -40,7 +46,7 @@ let stopBtn = (index) => {
 }
 
 
-
+// Hàm xử lí đếm giờ của button Start
 let startTimer = (index) => {
     switch(index){
         case index:
