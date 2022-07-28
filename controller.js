@@ -1,5 +1,8 @@
+// DOM: Khởi tạo biến, gán phương thức
+//      querySelector, id của thẻ main
 let main = document.querySelector(".main")
 
+// Khởi tạo giao diện (Render)
 for (let i of clock.data){
     main.innerHTML += `
     <div class="clock">
@@ -17,8 +20,8 @@ for (let i of clock.data){
 let Interval = [],
 
 // DOM: Khởi tạo biến, gán tất cả bằng phương
-//      thức querySelector, id của những button 
-//      có bên index.html
+//      thức querySelector, id của những thẻ 
+//      span có bên index.html
     tens = document.querySelectorAll("#tens"),
     seconds = document.querySelectorAll("#seconds"),
     minutes = document.querySelectorAll("#minutes")
@@ -89,4 +92,23 @@ let startTimer = (index) => {
             break;
     }
 }
+
+// DOM: Khởi tạo biến, gán tất cả bằng phương
+//      thức querySelector, id của những button 
+//      có bên index.html
+
+let startAll = document.querySelector("#startAll")
+let stopAll = document.querySelector("#stopAll")
+
+startAll.addEventListener("click", () => {
+    for (let i = 0; i < clock.data.length; i++)
+        startBtn(i)
+})
+
+
+stopAll.addEventListener("click", () => {
+    for (let i = 0; i < clock.data.length; i++)
+        stopBtn(i)
+})
+
 
