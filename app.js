@@ -1,80 +1,121 @@
+// DOM: Khởi tạo biến, gán phương thức
+//      querySelector, id của thẻ main
+let main = document.querySelector(".main")
+
+// Khởi tạo giao diện (Render)
+for (let data of clock.data){
+    main.innerHTML += `
+    <div class="clock">
+        <span id="minutes">${data.minutes}</span>:
+        <span id="seconds">${data.seconds}</span>:
+        <span id="tens">${data.tens}</span>
+        <button id="start" onclick="startBtn(`+ data.id +`)">Start</button>
+        <button id="pause" onclick="pauseBtn(`+ data.id +`)">Pause</button>
+        <button id="stop" onclick="stopBtn(`+ data.id +`)">Stop</button>
+    </div>
+    `
+}
+
+// Khởi tạo biến, để tạo giá trị ban đầu
+let Interval = [],
+
+// DOM: Khởi tạo biến, gán tất cả bằng phương
+//      thức querySelector, id của những thẻ 
+//      span có bên index.html
+    tens = document.querySelectorAll("#tens"),
+    seconds = document.querySelectorAll("#seconds"),
+    minutes = document.querySelectorAll("#minutes")
+    
+// Lắng nghe sự kiện (click) của button và chạy hàm
+let startBtn = (index) => {
+    clearInterval(Interval[index])
+    Interval[index] = setInterval(() => {
+        startTimer(index)
+    }, 10)
+}
+
+let pauseBtn = (index) => {
+    clearInterval(Interval[index])
+}
+
+let stopBtn = (index) => {
+    clearInterval(Interval[index])
+    clock.data[index].appendMinutes = "00"
+    clock.data[index].appendSeconds  = "00"
+    clock.data[index].appendTens  = "00"
+    minutes[index].innerHTML = clock.data[index].appendMinutes
+    seconds[index].innerHTML = clock.data[index].appendSeconds
+    tens[index].innerHTML = clock.data[index].appendTens
+}
+
+
+// Hàm xử lí đếm giờ của button Start
+let startTimer = (index) => {
+    switch(index){
+        case index:
+            clock.data[index].appendTens++
+
+            // Phần trăm giây (Tens)
+            if (0 < clock.data[index].appendTens && clock.data[index].appendTens <= 9)
+                tens[index].innerHTML = "0" + clock.data[index].appendTens
+
+            if (9 < clock.data[index].appendTens && clock.data[index].appendTens <= 99)
+                tens[index].innerHTML = clock.data[index].appendTens
+
+            if (clock.data[index].appendTens > 99)
+                clock.data[index].appendTens = 0,
+                tens[index].innerHTML = "0" + clock.data[index].appendTens,
+                clock.data[index].appendSeconds++,
+                seconds[index].innerHTML = "0" + clock.data[index].appendSeconds
+
+            // Giây (Seconds)
+
+            if (0 < clock.data[index].appendSeconds && clock.data[index].appendSeconds <= 9)
+                seconds[index].innerHTML = "0" + clock.data[index].appendSeconds
+
+            if (9 < clock.data[index].appendSeconds && clock.data[index].appendSeconds <= 59)
+                seconds[index].innerHTML = clock.data[index].appendSeconds
+
+            if (clock.data[index].appendSeconds > 59)
+                clock.data[index].appendSeconds = 0,
+                seconds[index].innerHTML = "0" + clock.data[index].appendSeconds,
+                clock.data[index].appendMinutes++,
+                minutes[index].innerHTML = "0" + clock.data[index].appendMinutes
+
+            // Phút (Minutes)
+            if (0 < clock.data[index].appendMinutes && clock.data[index].appendMinutes <= 9)
+                minutes[index].innerHTML = "0" + clock.data[index].appendMinutes
+
+            if (9 < clock.data[index].appendMinutes && clock.data[index].appendMinutes <= 99)
+                minutes[index].innerHTML = clock.data[index].appendMinutes
+
+            break;
+    }
+}
 
 // DOM: Khởi tạo biến, gán tất cả bằng phương
 //      thức querySelector, id của những button 
 //      có bên index.html
-let start_btn = document.querySelector('.start'),
-    pause_btn = document.querySelector('#pause'),
-    stop_btn = document.querySelector('#stop'),
-    start_all_btn = document.querySelector('#startAll'),
-    stop_all_btn = document.querySelector('#stopAll'),
 
-// DOM: Khởi tạo biến, gán tất cả bằng phương thức
-//      querySelector, id của thẻ span chứa mm:ss:tt
-    minutes = document.querySelector("#minutes"),
-    seconds = document.querySelector("#seconds"),
-    tens = document.querySelector("#tens"),
+let div = document.querySelector(".div")
 
-// Khởi tạo biến, để tạo giá trị ban đầu
-    appendMinutes = 00,
-    appendSeconds = 00,
-    appendTens = 00,
-    Interval
+let start = document.createElement("button")
+start.textContent = "Start All"
+start.setAttribute("id", "startAll")
+div.appendChild(start)
 
-// Lắng nghe sự kiện (click) của button và chạy hàm
-const startBtn = (i) => {
-    clearInterval(Interval)
-    Interval = setInterval(startTimer, 10)
-}
+let stop = document.createElement("button")
+stop.textContent = "stop All"
+stop.setAttribute("id", "stopAll")
+div.appendChild(stop)
 
-pause_btn.addEventListener("click", () => {
-    clearInterval(Interval)
+// Hàm thực hiện phương thức bắt đầu(start), tạm dừng(stop) tất cả
+startAll.addEventListener("click", () => {
+    for (let i = 0; i < clock.data.length; i++)
+        startBtn(i)
 })
 
-stop_btn.addEventListener("click", () => {
-    clearInterval(Interval)
-    appendMinutes = "00"
-    appendSeconds = "00"
-    appendTens = "00"
-    minutes.innerHTML = appendMinutes
-    seconds.innerHTML = appendSeconds
-    tens.innerHTML = appendTens
+stopAll.addEventListener("click", () => {
+    for (let i = 0; i < clock.data.length; i++)
+        stopBtn(i)
 })
-
-// Hàm xử lí đếm giờ của button Start
-let startTimer = (i) => {
-    appendTens++
-   
-    // Phần trăm giây
-    if (0 < appendTens && appendTens <= 9)
-        tens.innerHTML = "0" + appendTens
-
-    if (9 < appendTens && appendTens <= 99)
-        tens.innerHTML = appendTens
-
-    if (appendTens > 99)
-        appendTens = 0,
-        tens.innerHTML = "0" + appendTens,
-        appendSeconds++,
-        seconds.innerHTML = "0" + appendSeconds
-    
-
-    // Giây
-    if (0 < appendSeconds && appendSeconds <= 9)
-        seconds.innerHTML = "0" + appendSeconds
-
-    if (9 < appendSeconds && appendSeconds <= 59)
-        seconds.innerHTML = appendSeconds
-
-    if (appendSeconds > 59)
-        appendSeconds = 0,
-        seconds.innerHTML = "0" + appendSeconds,
-        appendMinutes++,
-        minutes.innerHTML = "0" + appendMinutes
-
-    // Phút
-    if (0 < appendMinutes && appendMinutes <= 9)
-        minutes.innerHTML = "0" + appendMinutes
-
-    if (9 < appendMinutes && appendMinutes <= 99)
-        minutes.innerHTML = appendMinutes
-}

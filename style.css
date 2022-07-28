@@ -45,3 +45,7 @@ button:hover{
     color: orange;
 }
     
+.div{
+    display: flex;
+    justify-content: center;
+}
