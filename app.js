@@ -39,50 +39,40 @@ const startTimer = () => {
     appendTens++
 
     if (appendTens <= 9){
-        tens.innerHTML = ""
         tens.innerHTML = "0" + appendTens
     }
 
     if (appendTens > 9){
-        tens.innerHTML = ""
         tens.innerHTML = appendTens
     }
 
     if (appendTens > 99){
-        appendSeconds++
-        seconds.innerHTML = ""
-        seconds.innerHTML = "0" + appendSeconds
         appendTens = 0
-        tens.innerHTML = ""
-        tens.innerHTML = "0" + 0
+        tens.innerHTML = "0" + appendTens
+        appendSeconds++
+        seconds.innerHTML = "0" + appendSeconds
     }
 
     if (appendSeconds <= 9){
-        seconds.innerHTML = ""
         seconds.innerHTML = "0" + appendSeconds
     }
 
     if (appendSeconds > 9){
-        seconds.innerHTML = ""
         seconds.innerHTML = appendSeconds
     }
 
-    if (appendSeconds > 99){
-        minutes++
-        seconds.innerHTML = ""
-        seconds.innerHTML = "0" + appendSeconds
+    if (appendSeconds > 60){
         appendSeconds = 0
-        seconds.innerHTML = ""
-        seconds.innerHTML = "0" + 0
+        seconds.innerHTML = "0" + appendSeconds
+        appendMinutes++
+        minutes.innerHTML = "0" + appendMinutes
     }
 
     if (appendMinutes <= 9){
-        minutes.innerHTML = ""
         minutes.innerHTML = "0" + appendMinutes
     }
 
     if (appendMinutes > 9){
-        minutes.innerHTML = ""
         minutes.innerHTML = appendMinutes
     }
 }
