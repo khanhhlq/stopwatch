@@ -7,13 +7,16 @@ for (let i of clock.data){
         <span id="seconds">${i.seconds}</span>:
         <span id="tens">${i.tens}</span>
         <button id="start" onclick="startBtn(`+ i.id +`)">Start</button>
-        <button id="pause">Pause</button>
+        <button id="pause" onclick="pauseBtn(`+ i.id +`)">Pause</button>
         <button id="stop" onclick="stopBtn(`+ i.id +`)">Stop</button>
     </div>
     `
 }
 
-let Interval = []
+let Interval = [],
+    tens = document.querySelectorAll("#tens"),
+    seconds = document.querySelectorAll("#seconds"),
+    minutes = document.querySelectorAll("#minutes")
 
 let startBtn = (index) => {
     clearInterval(Interval[index])
@@ -22,18 +25,28 @@ let startBtn = (index) => {
     }, 10)
 }
 
-let stopBtn = (index) => {
+let pauseBtn = (index) => {
     clearInterval(Interval[index])
-    console.log("stop")
 }
 
-let tens = document.querySelectorAll("#tens")
-let seconds = document.querySelectorAll("#seconds")
+let stopBtn = (index) => {
+    clearInterval(Interval[index])
+    clock.data[index].appendMinutes = "00"
+    clock.data[index].appendSeconds  = "00"
+    clock.data[index].appendTens  = "00"
+    minutes[index].innerHTML = clock.data[index].appendMinutes
+    seconds[index].innerHTML = clock.data[index].appendSeconds
+    tens[index].innerHTML = clock.data[index].appendTens
+}
+
+
 
 let startTimer = (index) => {
     switch(index){
         case index:
             clock.data[index].appendTens++
+
+            // Phần trăm giây (Tens)
             if (0 < clock.data[index].appendTens && clock.data[index].appendTens <= 9)
                 tens[index].innerHTML = "0" + clock.data[index].appendTens
 
@@ -44,36 +57,30 @@ let startTimer = (index) => {
                 clock.data[index].appendTens = 0,
                 tens[index].innerHTML = "0" + clock.data[index].appendTens,
                 clock.data[index].appendSeconds++,
-                seconds[0].innerHTML = "0" + clock.data[index].appendSeconds
+                seconds[index].innerHTML = "0" + clock.data[index].appendSeconds
+
+            // Giây (Seconds)
 
             if (0 < clock.data[index].appendSeconds && clock.data[index].appendSeconds <= 9)
-                seconds.innerHTML = "0" + clock.data[index].appendSeconds
+                seconds[index].innerHTML = "0" + clock.data[index].appendSeconds
+
+            if (9 < clock.data[index].appendSeconds && clock.data[index].appendSeconds <= 59)
+                seconds[index].innerHTML = clock.data[index].appendSeconds
+
+            if (clock.data[index].appendSeconds > 59)
+                clock.data[index].appendSeconds = 0,
+                seconds[index].innerHTML = "0" + clock.data[index].appendSeconds,
+                clock.data[index].appendMinutes++,
+                minutes[index].innerHTML = "0" + clock.data[index].appendMinutes
+
+            // Phút (Minutes)
+            if (0 < clock.data[index].appendMinutes && clock.data[index].appendMinutes <= 9)
+                minutes[index].innerHTML = "0" + clock.data[index].appendMinutes
+
+            if (9 < clock.data[index].appendMinutes && clock.data[index].appendMinutes <= 99)
+                minutes[index].innerHTML = clock.data[index].appendMinutes
 
             break;
     }
-
-
-
-
-
-//     // Giây
-//     if (0 < appendSeconds && appendSeconds <= 9)
-//         seconds.innerHTML = "0" + appendSeconds
-
-//     if (9 < appendSeconds && appendSeconds <= 59)
-//         seconds.innerHTML = appendSeconds
-
-//     if (appendSeconds > 59)
-//         appendSeconds = 0,
-//         seconds.innerHTML = "0" + appendSeconds,
-//         appendMinutes++,
-//         minutes.innerHTML = "0" + appendMinutes
-
-//     // Phút
-//     if (0 < appendMinutes && appendMinutes <= 9)
-//         minutes.innerHTML = "0" + appendMinutes
-
-//     if (9 < appendMinutes && appendMinutes <= 99)
-//         minutes.innerHTML = appendMinutes
 }
 

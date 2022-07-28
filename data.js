@@ -2,51 +2,52 @@ let clock = {
     data:[
         {
             id: 0,
-            minutes: 0,
-            seconds: 0,
-            tens: 0,
-            interval: [],
-            appendMinutes: 0,
-            appendSeconds: 0,
-            appendTens: 0
+            minutes: "00",
+            seconds: "00",
+            tens: "00",
+            appendMinutes: 00,
+            appendSeconds: 00,
+            appendTens: 00
         },
+
         {
             id: 1,
-            minutes: 0,
-            seconds: 0,
-            tens: 0,
-            appendMinutes: 0,
-            appendSeconds: 0,
-            appendTens: 0
+            minutes: '00',
+            seconds: '00',
+            tens: '00',
+            appendMinutes: 00,
+            appendSeconds: 00,
+            appendTens: 00
         },
+
         {
             id: 2,
-            minutes: 0,
-            seconds: 0,
-            tens: 0,
-            appendMinutes: 0,
-            appendSeconds: 0,
-            appendTens: 0
+            minutes: '00',
+            seconds: '00',
+            tens: '00',
+            appendMinutes: 00,
+            appendSeconds: 00,
+            appendTens: 00
         },
+        
         {
             id: 3,
-            minutes: 0,
-            seconds: 0,
-            tens: 0,
-            appendMinutes: 0,
-            appendSeconds: 0,
-            appendTens: 0
+            minutes: '00',
+            seconds: '00',
+            tens: '00',
+            appendMinutes: 00,
+            appendSeconds: 00,
+            appendTens: 00
         },
+
         {
             id: 4,
-            minutes: 0,
-            seconds: 0,
-            tens: 0,
-            appendMinutes: 0,
-            appendSeconds: 0,
-            appendTens: 0
+            minutes: '00',
+            seconds: '00',
+            tens: '00',
+            appendMinutes: 00,
+            appendSeconds: 00,
+            appendTens: 00
         }  
     ]
 }
-
-localStorage.setItem("clocks", JSON.stringify(clock.data))
