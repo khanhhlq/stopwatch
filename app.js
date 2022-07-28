@@ -2,11 +2,11 @@
 // DOM: Khởi tạo biến, gán tất cả bằng phương
 //      thức querySelector, id của những button 
 //      có bên index.html
-const start_btn = document.querySelector('#start')
-const pause_btn = document.querySelector('#pause')
-const stop_btn = document.querySelector('#stop')
-const start_all_btn = document.querySelector('#startAll')
-const stop_all_btn = document.querySelector('#stopAll')
+let start_btn = document.querySelector('.start')
+let pause_btn = document.querySelector('#pause')
+let stop_btn = document.querySelector('#stop')
+let start_all_btn = document.querySelector('#startAll')
+let stop_all_btn = document.querySelector('#stopAll')
 
 // DOM: Khởi tạo biến, gán tất cả bằng phương thức
 //      querySelector, id của thẻ span chứa mm:ss:tt
@@ -21,10 +21,18 @@ let appendTens = 00
 let Interval
 
 // Lắng nghe sự kiện (click) của button và chạy hàm
-start_btn.addEventListener("click", () => {
-    clearInterval(Interval)
-    Interval = setInterval(startTimer, 1)
-})
+// start_btn.addEventListener("click", () => {
+//     clearInterval(Interval)
+//     Interval = setInterval(startTimer, 1)
+// })
+
+const testMan = (i) => {
+    if(i == 3){
+        clearInterval(Interval)
+        Interval = setInterval(startTimer, 1)
+    }
+
+}
 
 pause_btn.addEventListener("click", () => {
     clearInterval(Interval)
@@ -41,7 +49,7 @@ stop_btn.addEventListener("click", () => {
 })
 
 // Hàm xử lí đếm giờ của button Start
-const startTimer = () => {
+let startTimer = () => {
     appendTens++
    
 
