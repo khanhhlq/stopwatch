@@ -21,17 +21,16 @@ let appendTens = 00
 let Interval
 
 // Lắng nghe sự kiện (click) của button và chạy hàm
-// start_btn.addEventListener("click", () => {
-//     clearInterval(Interval)
-//     Interval = setInterval(startTimer, 1)
-// })
+const startBtn = (i) => {
 
-const testMan = (i) => {
-    if(i == 3){
+    if ( i == 3) {
         clearInterval(Interval)
-        Interval = setInterval(startTimer, 1)
+        Interval = setInterval(startTimer, 10)
     }
-
+    if (i == 2){
+        clearInterval(Interval)
+        Interval = setInterval(startTimer, 10)
+    }
 }
 
 pause_btn.addEventListener("click", () => {
@@ -52,7 +51,6 @@ stop_btn.addEventListener("click", () => {
 let startTimer = () => {
     appendTens++
    
-
     // Phần trăm giây
     if (0 < appendTens && appendTens <= 9){
         tens.innerHTML = "0" + appendTens
