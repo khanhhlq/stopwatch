@@ -6,6 +6,7 @@ let main = document.querySelector(".main")
 for (let data of clock.data){
     main.innerHTML += `
     <div class="clock">
+        <text>${data.id + 1}.</text>
         <span id="minutes">${data.minutes}</span>:
         <span id="seconds">${data.seconds}</span>:
         <span id="tens">${data.tens}</span>
@@ -105,9 +106,14 @@ start.setAttribute("id", "startAll")
 div.appendChild(start)
 
 let stop = document.createElement("button")
-stop.textContent = "stop All"
+stop.textContent = "Stop All"
 stop.setAttribute("id", "stopAll")
 div.appendChild(stop)
+
+let pause = document.createElement("button")
+pause.textContent = "Pause All"
+pause.setAttribute("id", "pauseAll")
+div.appendChild(pause)
 
 // Hàm thực hiện phương thức bắt đầu(start), tạm dừng(stop) tất cả
 startAll.addEventListener("click", () => {
@@ -118,4 +124,9 @@ startAll.addEventListener("click", () => {
 stopAll.addEventListener("click", () => {
     for (let i = 0; i < clock.data.length; i++)
         stopBtn(i)
+})
+
+pauseAll.addEventListener("click", () => {
+    for (let i = 0; i < clock.data.length; i++)
+        pauseBtn(i)
 })
