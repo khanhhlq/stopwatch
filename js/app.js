@@ -70,7 +70,6 @@ let startTimer = (index) => {
                 seconds[index].innerHTML = "0" + clock.data[index].appendSeconds
 
             // Giây (Seconds)
-
             if (0 < clock.data[index].appendSeconds && clock.data[index].appendSeconds <= 9)
                 seconds[index].innerHTML = "0" + clock.data[index].appendSeconds
 
