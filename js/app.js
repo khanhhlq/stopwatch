@@ -105,15 +105,16 @@ start.textContent = "Start All"
 start.setAttribute("id", "startAll")
 div.appendChild(start)
 
+let pause = document.createElement("button")
+pause.textContent = "Pause All"
+pause.setAttribute("id", "pauseAll")
+div.appendChild(pause)
+
 let stop = document.createElement("button")
 stop.textContent = "Stop All"
 stop.setAttribute("id", "stopAll")
 div.appendChild(stop)
 
-let pause = document.createElement("button")
-pause.textContent = "Pause All"
-pause.setAttribute("id", "pauseAll")
-div.appendChild(pause)
 
 // Hàm thực hiện phương thức bắt đầu(start), tạm dừng(stop) tất cả
 startAll.addEventListener("click", () => {
@@ -121,12 +122,12 @@ startAll.addEventListener("click", () => {
         startBtn(i)
 })
 
-stopAll.addEventListener("click", () => {
-    for (let i = 0; i < clock.data.length; i++)
-        stopBtn(i)
-})
-
 pauseAll.addEventListener("click", () => {
     for (let i = 0; i < clock.data.length; i++)
         pauseBtn(i)
+})
+
+stopAll.addEventListener("click", () => {
+    for (let i = 0; i < clock.data.length; i++)
+        stopBtn(i)
 })
